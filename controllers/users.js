@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 const UserIngredient = require("../models/userIngredient");
 const Recipe = require("../models/recipe");
-const RecipeIngredient = require("../models/recipeIngredient");
 const RecipeMeal = require("../models/recipeMeal");
 const RecipeStar = require("../models/recipeStar");
 
@@ -60,18 +59,18 @@ exports.userProfile = (request, response, next) => {
 			},
 			model: UserIngredient
 		})
-		// .populate({
-		// 	path: "recipes",
-		// 	populate: {
-		// 		path: "recipeIngredients",
-		// 		select: "weight",
-		// 		populate: {
-		// 			path: "ingredient",
-		// 			select: "uuid"
-		// 		}
-		// 	},
-		// 	model: Recipe
-		// })
+		.populate({
+			path: "recipes",
+			populate: {
+				path: "recipeIngredients",
+				select: "weight",
+				populate: {
+					path: "ingredient",
+					select: "name uuid _id"
+				}
+			},
+			model: Recipe
+		})
 		.exec()
 		.then(userData => {
 			console.log(userData)
@@ -113,14 +112,11 @@ exports.loginUser = (request, response, next) => {
 				select: "weight",
 				populate: {
 					path: "ingredient",
-					select: "uuid"
+					select: "name uuid _id"
 				}
 			},
 			model: Recipe
 		})
-		// .populate("recipes", Recipe)
-		// .populate("recipeMeals", "multiplier recipe", RecipeMeal)
-		// .populate("recipeStars", "recipe", RecipeStar)
 		.exec()
 		.then(userData => {
 			console.log(userData)
