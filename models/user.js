@@ -11,6 +11,22 @@ const userSchema = mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	userIngredients: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "UserIngredient"
+	}],
+	recipes: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "Recipe"
+	}],
+	recipeStars: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "RecipeStar"
+	}],
+	recipeMeals: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "RecipeMeal"
+	}],
 });
 
 userSchema.plugin(uniqueValidator);
