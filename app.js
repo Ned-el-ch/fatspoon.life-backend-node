@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const app = express();
 // const postsRoutes = require("./routes/posts")
 const usersRoutes = require("./routes/users")
+const recipesRoutes = require("./routes/recipes")
 const ingredientsRoutes = require("./routes/ingredients")
 const userIngredientsRoutes = require("./routes/userIngredients")
 
@@ -35,6 +36,7 @@ app.use((request, response, next) => {
 });
 
 app.use("/api/users", usersRoutes)
+app.use("/api/recipes", recipesRoutes)
 app.use("/api/ingredients", ingredientsRoutes)
 app.use("/api/userIngredients", userIngredientsRoutes)
 
