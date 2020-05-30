@@ -5,7 +5,6 @@ const RecipeIngredient = require("../models/recipeIngredient");
 exports.addRecipe = (request, response, next) => {
 	User.findById(request.userData.userId)
 		.then(user => {
-			// console.log(user.recipes, request.body)
 			let newRecipe = new Recipe({
 				user: request.userData.userId,
 				title: request.body.title,
@@ -30,13 +29,13 @@ exports.addRecipe = (request, response, next) => {
 				user.save()
 				newRecipe.save()
 					.then(recipe => {
-						console.log(recipe)
+						// console.log(recipe)
 						response.status(201).json({
 							recipe
 						})
 					})
 					.catch(error => {
-						console.log(error)
+						// console.log(error)
 						response.status(500).json({
 							error
 						})
@@ -73,13 +72,5 @@ exports.updateRecipe = (request, response, next) => {
 }
 
 exports.deleteRecipe = (request, response, next) => {
-
-}
-
-exports.starRecipe = (request, response, next) => {
-
-}
-
-exports.unstarRecipe = (request, response, next) => {
 
 }
