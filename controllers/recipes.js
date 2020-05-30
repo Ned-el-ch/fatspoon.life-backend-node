@@ -45,11 +45,22 @@ exports.addRecipe = (request, response, next) => {
 		})
 }
 
-exports.searchRecipes = (request, response, next) => {
-
+exports.getRecipe = (request, response, next) => {
+	Recipe
+		.findById(request.params.id)
+		.then(recipe => {
+			response.status(200).json({
+				recipe
+			})
+		})
+		.catch(error => {
+			response.status(404).json({
+				error
+			})
+		})
 }
 
-exports.getRecipe = (request, response, next) => {
+exports.searchRecipes = (request, response, next) => {
 
 }
 
