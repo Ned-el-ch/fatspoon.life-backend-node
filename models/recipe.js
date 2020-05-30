@@ -33,7 +33,7 @@ const recipeSchema = mongoose.Schema({
 		type: Number,
 		required: true,
 	},
-	author: {
+	user: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "User",
 		required: true
