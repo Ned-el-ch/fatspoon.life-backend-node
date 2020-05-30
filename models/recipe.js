@@ -33,11 +33,15 @@ const recipeSchema = mongoose.Schema({
 		type: Number,
 		required: true,
 	},
-	user: {
+	author: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "User",
 		required: true
-	}
+	},
+	recipeIngredients: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "RecipeIngredient"
+	}]
 })
 
 module.exports = mongoose.model("Recipe", recipeSchema)
