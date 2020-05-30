@@ -6,7 +6,7 @@ const userIngredientSchema = mongoose.Schema({
 		ref: "User",
 		required: true
 	},
-	item: {
+	ingredient: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Ingredient",
 		required: true
