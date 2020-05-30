@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 const app = express();
 // const postsRoutes = require("./routes/posts")
 const usersRoutes = require("./routes/users")
+const ingredientsRoutes = require("./routes/ingredients")
+const userIngredientsRoutes = require("./routes/userIngredients")
 
 // mongoose.connect(`mongodb+srv://niki:${process.env.MONGO_ATLAS_PW}@cluster0-mcu8b.mongodb.net/test?retryWrites=true&w=majority`, {
 mongoose.connect(`mongodb://heroku_8zf5qrjz:na9uhgqn6m1h6vh7ook4m0o58n@ds029106.mlab.com:29106/heroku_8zf5qrjz`, {
@@ -34,5 +36,9 @@ app.use((request, response, next) => {
 
 // app.use("/api/posts", postsRoutes)
 app.use("/api/users", usersRoutes)
+app.use("/api/ingredients", ingredientsRoutes)
+app.use("/api/userIngredients", userIngredientsRoutes)
 
 module.exports = app;
+
+
