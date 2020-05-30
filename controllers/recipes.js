@@ -49,12 +49,16 @@ exports.getRecipe = (request, response, next) => {
 	Recipe
 		.findById(request.params.id)
 		.then(recipe => {
-			response.status(200).json({
-				recipe
-			})
+			if (recipe) {
+				response.status(200).json({
+					recipe
+				})
+			} else {
+				response.status(404).json({error: "Recipe not found with that ID."})
+			}
 		})
 		.catch(error => {
-			response.status(404).json({
+			response.status(500).json({
 				error
 			})
 		})
