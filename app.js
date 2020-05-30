@@ -34,11 +34,8 @@ app.use((request, response, next) => {
 	next();
 });
 
-// app.use("/api/posts", postsRoutes)
 app.use("/api/users", usersRoutes)
 app.use("/api/ingredients", ingredientsRoutes)
 app.use("/api/userIngredients", userIngredientsRoutes)
 
 module.exports = app;
-
-
