@@ -9,3 +9,5 @@ router.get("/search", RecipesController.searchRecipes)
 router.get("/:id", RecipesController.getRecipe)
 router.put("/:id", checkAuth, RecipesController.updateRecipe);
 router.delete("/:id", checkAuth, RecipesController.deleteRecipe);
+
+module.exports = router;
