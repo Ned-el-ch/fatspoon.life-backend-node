@@ -55,7 +55,7 @@ exports.userProfile = (request, response, next) => {
 			select: "weight",
 			populate: {
 				path: "ingredient",
-				select: "uuid"
+				select: "uuid name _id"
 			},
 			model: UserIngredient
 		})
