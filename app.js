@@ -1,9 +1,9 @@
-const path = require("path");
+// const path = require("path");
 const express = require("express");
 const parser = require("body-parser");
 const mongoose = require("mongoose");
 const app = express();
-// const postsRoutes = require("./routes/posts")
+
 const usersRoutes = require("./routes/users")
 const recipesRoutes = require("./routes/recipes")
 const ingredientsRoutes = require("./routes/ingredients")
@@ -11,13 +11,11 @@ const userIngredientsRoutes = require("./routes/userIngredients")
 const recipeMealsRoutes = require("./routes/recipeMeals")
 const recipeStarsRoutes = require("./routes/recipeStars")
 
-// mongoose.connect(`mongodb+srv://niki:${process.env.MONGO_ATLAS_PW}@cluster0-mcu8b.mongodb.net/test?retryWrites=true&w=majority`, {
 mongoose.connect(`mongodb://heroku_8zf5qrjz:na9uhgqn6m1h6vh7ook4m0o58n@ds029106.mlab.com:29106/heroku_8zf5qrjz`, {
 		useNewUrlParser: true
 	})
 	.then(() => console.log("Connected to DB"))
 	.catch(() => console.log("Couldn't connect to DB"))
-//1k4Ie4aczcC7HZlC
 app.use(parser.json());
 app.use(parser.urlencoded({
 	extended: false
