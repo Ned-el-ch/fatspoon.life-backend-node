@@ -6,7 +6,8 @@ exports.addMeal = (request, response, next) => {
 			user: request.userData.userId,
 			recipe: request.body.recipe,
 			multiplier: request.body.multiplier,
-			plannedDate: new Date(request.body.plannedDate)
+			plannedDate: new Date(request.body.plannedDate),
+			completed: false
 		})
 		.then(recipeMeal => {
 			response.status(201).json({
@@ -26,7 +27,8 @@ exports.updateMeal = (request, response, next) => {
 		recipe: request.body.recipe,
 		user: request.userData.userId,
 		multiplier: request.body.multiplier,
-		plannedDate: request.body.plannedDate
+		plannedDate: request.body.plannedDate,
+		completed: request.body.completed,
 	})
 	RecipeMeal
 		.updateOne({

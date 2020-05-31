@@ -19,6 +19,10 @@ const recipeMealSchema = mongoose.Schema({
 		type: Number,
 		required: true,
 	},
+	completed: {
+		type: Boolean,
+		required: true
+	}
 });
 
 module.exports = mongoose.model("RecipeMeal", recipeMealSchema);

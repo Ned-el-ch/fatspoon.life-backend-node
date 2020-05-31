@@ -4,7 +4,7 @@ exports.starRecipe = (request, response, next) => {
 	RecipeStar
 		.findOne({
 			user: request.userData.userId,
-			recipe: request.params.id
+			recipe: request.body.recipe
 		}).then(result => {
 			if (result) {
 				response.status(500).json({
@@ -39,8 +39,7 @@ exports.starRecipe = (request, response, next) => {
 exports.unstarRecipe = (request, response, next) => {
 	RecipeStar
 		.deleteOne({
-			user: request.userData.userId,
-			recipe: request.params.id
+			_id: request.params.id
 		})
 		.then(result => {
 			if (result.deletedCount > 0) {
