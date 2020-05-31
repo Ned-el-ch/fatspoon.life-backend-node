@@ -155,15 +155,3 @@ exports.loginUser = (request, response, next) => {
 			})
 		})
 }
-
-exports.allUsers = (request, response, next) => {
-	response.status(200).json({
-		message: "This route works"
-	})
-}
-
-
-
-exports.addRecipe = (request, response, next) => {
-
-}
