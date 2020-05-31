@@ -4,7 +4,8 @@ const checkAuth = require("../middleware/check-auth")
 
 const RecipeMealsController = require("../controllers/recipeMeals")
 
-router.post("/:id", checkAuth, RecipeMealsController.addMeal)
+router.post("/", checkAuth, RecipeMealsController.addMeal)
+router.put("/:id", checkAuth, RecipeMealsController.updateMeal)
 router.delete("/:id", checkAuth, RecipeMealsController.deleteMeal)
 
 module.exports = router;
