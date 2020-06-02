@@ -23,9 +23,9 @@ const userSchema = mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "RecipeStar"
 	}],
-	recipeMeals: [{
+	orders: [{
 		type: mongoose.Schema.Types.ObjectId,
-		ref: "RecipeMeal"
+		ref: "Order"
 	}],
 });
 

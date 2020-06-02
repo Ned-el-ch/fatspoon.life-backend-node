@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const recipeMealSchema = mongoose.Schema({
+const orderSchema = mongoose.Schema({
 	user: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "User",
@@ -9,6 +9,10 @@ const recipeMealSchema = mongoose.Schema({
 	recipe: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Recipe",
+		required: true
+	},
+	address: {
+		type: String,
 		required: true
 	},
 	plannedDate: {
@@ -25,4 +29,4 @@ const recipeMealSchema = mongoose.Schema({
 	}
 });
 
-module.exports = mongoose.model("RecipeMeal", recipeMealSchema);
+module.exports = mongoose.model("Order", orderSchema);

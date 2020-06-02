@@ -8,7 +8,7 @@ const usersRoutes = require("./routes/users")
 const recipesRoutes = require("./routes/recipes")
 const ingredientsRoutes = require("./routes/ingredients")
 const userIngredientsRoutes = require("./routes/userIngredients")
-const recipeMealsRoutes = require("./routes/recipeMeals")
+const ordersRoutes = require("./routes/orders")
 const recipeStarsRoutes = require("./routes/recipeStars")
 
 mongoose.connect(`mongodb://heroku_8zf5qrjz:na9uhgqn6m1h6vh7ook4m0o58n@ds029106.mlab.com:29106/heroku_8zf5qrjz`, {
@@ -36,9 +36,9 @@ app.use((request, response, next) => {
 });
 
 app.use("/api/users", usersRoutes)
+app.use("/api/orders", ordersRoutes)
 app.use("/api/recipes", recipesRoutes)
 app.use("/api/ingredients", ingredientsRoutes)
-app.use("/api/recipeMeals", recipeMealsRoutes)
 app.use("/api/recipeStars", recipeStarsRoutes)
 app.use("/api/userIngredients", userIngredientsRoutes)
 

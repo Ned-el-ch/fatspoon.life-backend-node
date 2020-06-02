@@ -1,17 +1,18 @@
-const RecipeMeal = require("../models/recipeMeal")
+const Order = require("../models/order")
 
-exports.addMeal = (request, response, next) => {
-	RecipeMeal
+exports.addOrder = (request, response, next) => {
+	Order
 		.create({
 			user: request.userData.userId,
 			recipe: request.body.recipe,
 			multiplier: request.body.multiplier,
+			address: request.body.address,
 			plannedDate: new Date(request.body.plannedDate),
 			completed: false
 		})
-		.then(recipeMeal => {
+		.then(Order => {
 			response.status(201).json({
-				recipeMeal
+				Order
 			})
 		})
 		.catch(error => {
@@ -21,23 +22,24 @@ exports.addMeal = (request, response, next) => {
 		})
 }
 
-exports.updateMeal = (request, response, next) => {
-	let newRecipeMeal = new RecipeMeal({
+exports.updateOrder = (request, response, next) => {
+	let newOrder = new Order({
 		_id: request.params.id,
 		recipe: request.body.recipe,
 		user: request.userData.userId,
 		multiplier: request.body.multiplier,
 		plannedDate: request.body.plannedDate,
 		completed: request.body.completed,
+		address: request.body.address
 	})
-	RecipeMeal
+	Order
 		.updateOne({
 			_id: request.params.id
-		}, newRecipeMeal)
+		}, newOrder)
 		.then(result => {
 			if (result.nModified > 0) {
 				response.status(200).json({
-					recipeMeal: newRecipeMeal
+					Order: newOrder
 				})
 			} else {
 				response.status(500).json({
@@ -52,8 +54,8 @@ exports.updateMeal = (request, response, next) => {
 		})
 }
 
-exports.deleteMeal = (request, response, next) => {
-	RecipeMeal
+exports.deleteOrder = (request, response, next) => {
+	Order
 		.deleteOne({
 			_id: request.params.id
 		})

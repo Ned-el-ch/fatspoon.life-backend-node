@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 const UserIngredient = require("../models/userIngredient");
 const Recipe = require("../models/recipe");
-const RecipeMeal = require("../models/recipeMeal");
+const Order = require("../models/order");
 const RecipeStar = require("../models/recipeStar");
 
 exports.createUser = (request, response, next) => {
@@ -33,7 +33,7 @@ exports.createUser = (request, response, next) => {
 						userId: result._id,
 						userIngredients: result.userIngredients,
 						recipes: result.recipes,
-						recipeMeals: result.recipeMeals,
+						orders: result.orders,
 						recipeStars: result.recipeStars
 					},
 					token
@@ -78,7 +78,7 @@ exports.userProfile = (request, response, next) => {
 				userIngredients: userData.userIngredients,
 				recipes: userData.recipes,
 				recipeStars: userData.recipeStars,
-				recipeMeals: userData.recipeMeals,
+				orders: userData.orders,
 				username: userData.username,
 				_id: userData._id
 			})
@@ -136,7 +136,7 @@ exports.loginUser = (request, response, next) => {
 							userIngredients: userData.userIngredients,
 							recipes: userData.recipes,
 							recipeStars: userData.recipeStars,
-							recipeMeals: userData.recipeMeals,
+							orders: userData.orders,
 							username: userData.username,
 							_id: userData._id
 						})
