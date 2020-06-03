@@ -53,7 +53,47 @@ exports.getRecipe = (request, response, next) => {
 					recipe
 				})
 			} else {
-				response.status(404).json({error: "Recipe not found with that ID."})
+				response.status(404).json({
+					error: "Recipe not found with that ID."
+				})
+			}
+		})
+		.catch(error => {
+			response.status(500).json({
+				error
+			})
+		})
+}
+
+exports.updateRecipe = (request, response, next) => {
+	let newRecipe = new Recipe({
+		_id: request.params.id,
+		user: request.userData.userId,
+		title: request.body.title,
+		uuid: request.body.uuid,
+		description: request.body.description,
+		prepTime: request.body.prepTime,
+		cookingTime: request.body.cookingTime,
+		imageLink: request.body.imageLink,
+		instructions: request.body.instructions,
+		servingCount: request.body.servingCount
+	})
+}
+
+exports.deleteRecipe = (request, response, next) => {
+	Recipe
+		.deleteOne({
+			_id: request.params.id
+		})
+		.then(result => {
+			if (result.deletedCount > 0) {
+				response.status(200).json({
+					success: "Deleted successfully."
+				})
+			} else {
+				response.status(500).json({
+					error: "Not deleted."
+				})
 			}
 		})
 		.catch(error => {
@@ -64,13 +104,5 @@ exports.getRecipe = (request, response, next) => {
 }
 
 exports.searchRecipes = (request, response, next) => {
-
-}
-
-exports.updateRecipe = (request, response, next) => {
-
-}
-
-exports.deleteRecipe = (request, response, next) => {
 
 }
