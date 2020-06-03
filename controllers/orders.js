@@ -1,5 +1,30 @@
 const Order = require("../models/order")
 
+exports.getOrders = (request, response, next) => {
+  const startDate = new Date(request.query.startdate)
+  const endDate = new Date(request.query.enddate)
+  Order
+  .find({
+    plannedDate: {
+      $gte: startDate,
+      $lte: endDate
+    },
+    user: request.userData.userId
+  })
+  .then(orders => {
+    console.log(orders)
+    response.status(200).json({
+      orders
+    })
+  })
+  .catch(error => {
+    console.log(error)
+    response.status(500).json({
+      error
+    })
+  })
+}
+
 exports.addOrder = (request, response, next) => {
 	Order
 		.create({

@@ -33,8 +33,7 @@ exports.createUser = (request, response, next) => {
 						userId: result._id,
 						userIngredients: result.userIngredients,
 						recipes: result.recipes,
-						orders: result.orders,
-						recipeStars: result.recipeStars
+						orders: result.orders
 					},
 					token
 				});
@@ -77,7 +76,6 @@ exports.userProfile = (request, response, next) => {
 			response.status(200).json({
 				userIngredients: userData.userIngredients,
 				recipes: userData.recipes,
-				recipeStars: userData.recipeStars,
 				orders: userData.orders,
 				username: userData.username,
 				_id: userData._id
@@ -116,7 +114,8 @@ exports.loginUser = (request, response, next) => {
 				}
 			},
 			model: Recipe
-		})
+    })
+    
 		.exec()
 		.then(userData => {
 			console.log(userData)
@@ -135,7 +134,6 @@ exports.loginUser = (request, response, next) => {
 							token,
 							userIngredients: userData.userIngredients,
 							recipes: userData.recipes,
-							recipeStars: userData.recipeStars,
 							orders: userData.orders,
 							username: userData.username,
 							_id: userData._id

@@ -11,7 +11,7 @@ module.exports = (request, response, next) => {
 		next()
 	} catch (error) {
 		response.status(401).json({
-			message: "You are not authenticated."
+			error: "You are not authenticated."
 		})
 	}
 }
