@@ -4,9 +4,9 @@
   "description": "NodeJS API for fatspoon.life",
   "main": "server.js",
   "scripts": {
-		"start": "node server.js",
-		"devserver": "nodemon server.js"
-	},
+    "start": "node server.js",
+    "devserver": "nodemon server.js"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
