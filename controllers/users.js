@@ -27,7 +27,7 @@ exports.createUser = (request, response, next) => {
 						expiresIn: 86400
 					})
 				response.status(201).json({
-					message: "User created successufully",
+					success: "User created successufully",
 					userData: {
 						username: result.username,
 						userId: result._id,
@@ -39,9 +39,9 @@ exports.createUser = (request, response, next) => {
 				});
 			})
 			.catch((error) => {
-				console.log(error)
 				response.status(500).json({
-					message: "Invalid auth credentials."
+					message: "Invalid auth credentials.",
+					error
 				});
 			});
 	});
@@ -74,11 +74,14 @@ exports.userProfile = (request, response, next) => {
 		.then(userData => {
 			console.log(userData)
 			response.status(200).json({
-				userIngredients: userData.userIngredients,
-				recipes: userData.recipes,
-				orders: userData.orders,
-				username: userData.username,
-				_id: userData._id
+				success: "Profile fetched successfully",
+				userData: {
+					userIngredients: userData.userIngredients,
+					recipes: userData.recipes,
+					orders: userData.orders,
+					username: userData.username,
+					_id: userData._id
+				}
 			})
 		})
 		.catch(error => {
@@ -114,8 +117,8 @@ exports.loginUser = (request, response, next) => {
 				}
 			},
 			model: Recipe
-    })
-    
+		})
+
 		.exec()
 		.then(userData => {
 			console.log(userData)
@@ -132,15 +135,18 @@ exports.loginUser = (request, response, next) => {
 						);
 						response.status(200).json({
 							token,
-							userIngredients: userData.userIngredients,
-							recipes: userData.recipes,
-							orders: userData.orders,
-							username: userData.username,
-							_id: userData._id
+							success: "Logged in successfully",
+							userData: {
+								userIngredients: userData.userIngredients,
+								recipes: userData.recipes,
+								orders: userData.orders,
+								username: userData.username,
+								_id: userData._id
+							}
 						})
 					} else {
 						response.status(404).json({
-							message: "Auth failed"
+							error: "Auth failed"
 						})
 					}
 				})

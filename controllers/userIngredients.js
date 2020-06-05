@@ -19,7 +19,7 @@ exports.addIngredient = (request, response, next) => {
 			if (uiExists) {
 				console.log("ui exists")
 				response.status(500).json({
-					message: "Not created. Already exists."
+					error: "Not created. Already exists."
 				})
 			} else {
 				console.log("create a new ui")
@@ -34,7 +34,7 @@ exports.addIngredient = (request, response, next) => {
 					.then(userIngredient => {
 						console.log(userIngredient)
 						response.status(201).json({
-							message: "Created.",
+							success: "Created.",
 							userIngredient
 						})
 					})
@@ -68,12 +68,12 @@ exports.updateIngredient = (request, response, next) => {
 				.then(result => {
 					if (result.nModified > 0) {
 						response.status(200).json({
-							message: "Found, modified",
+							success: "Found, modified",
 							newUserIngredient
 						})
 					} else {
 						response.status(500).json({
-							message: "Found, Not modified",
+							error: "Found, Not modified",
 							newUserIngredient
 						})
 					}
@@ -87,7 +87,7 @@ exports.updateIngredient = (request, response, next) => {
 		})
 	} else {
 		response.status(500).json({
-			message: "Not found."
+			error: "Not found."
 		})
 	}
 }
