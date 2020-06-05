@@ -1,8 +1,9 @@
 const Order = require("../models/order")
 
 exports.getOrders = (request, response, next) => {
-  const startDate = new Date(request.query.startdate)
-  const endDate = new Date(request.query.enddate)
+  const startDate = request.query.startdate
+	const endDate = request.query.enddate
+	// console.log(startDate, endDate)
   Order
   .find({
     plannedDate: {
@@ -12,7 +13,7 @@ exports.getOrders = (request, response, next) => {
     user: request.userData.userId
   })
   .then(orders => {
-    console.log(orders)
+		console.log(orders)
     response.status(200).json({
       orders
     })
@@ -32,7 +33,7 @@ exports.addOrder = (request, response, next) => {
 			recipe: request.body.recipe,
 			multiplier: request.body.multiplier,
 			address: request.body.address,
-			plannedDate: new Date(request.body.plannedDate),
+			plannedDate: request.body.plannedDate,
 			completed: false
 		})
 		.then(Order => {
