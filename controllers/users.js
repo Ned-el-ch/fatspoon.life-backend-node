@@ -48,39 +48,41 @@ exports.createUser = (request, response, next) => {
 }
 
 exports.userProfile = (request, response, next) => {
-	User.findById(request.userData.userId)
-		.populate({
-			path: "userIngredients",
-			select: "weight",
-			populate: {
-				path: "ingredient",
-				select: "uuid name _id"
-			},
-			model: UserIngredient
-		})
-		.populate({
-			path: "recipes",
-			populate: {
-				path: "recipeIngredients",
-				select: "weight",
-				populate: {
-					path: "ingredient",
-					select: "name uuid _id"
-				}
-			},
-			model: Recipe
-		})
-		.exec()
-		.then(userData => {
-			console.log(userData)
+  User
+    .findOne({_id: request.userData.userId})
+    .populate({
+      path: "userIngredients",
+      select: "weight",
+      populate: {
+        path: "ingredient",
+        select: "name category _id"
+      },
+      model: UserIngredient
+    })
+    // .populate({
+    //   path: "recipes",
+    //   populate: {
+    //     path: "recipeIngredients",
+    //     select: "weight",
+    //     populate: {
+    //       path: "ingredient",
+    //       select: "name category _id"
+    //     }
+    //   },
+    //   model: Recipe
+    // })
+    // .populate('userIngredients')
+    .exec()
+		.then(user => {
+			console.log(user)
 			response.status(200).json({
 				success: "Profile fetched successfully",
 				userData: {
-					userIngredients: userData.userIngredients,
-					recipes: userData.recipes,
-					orders: userData.orders,
-					username: userData.username,
-					_id: userData._id
+					userIngredients: user.userIngredients,
+					recipes: user.recipes,
+					orders: user.orders,
+					username: user.username,
+					_id: user._id
 				}
 			})
 		})
@@ -102,7 +104,7 @@ exports.loginUser = (request, response, next) => {
 			select: "weight",
 			populate: {
 				path: "ingredient",
-				select: "uuid"
+				select: "name category _id"
 			},
 			model: UserIngredient
 		})
@@ -118,7 +120,6 @@ exports.loginUser = (request, response, next) => {
 			},
 			model: Recipe
 		})
-
 		.exec()
 		.then(userData => {
 			console.log(userData)

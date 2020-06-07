@@ -4,7 +4,7 @@ const checkAuth = require("../middleware/check-auth")
 
 const UserIngredientsController = require("../controllers/userIngredients")
 
-router.post("/", checkAuth, UserIngredientsController.addIngredient);
+router.post("/", checkAuth, UserIngredientsController.addIngredients);
 router.put("/:id", checkAuth, UserIngredientsController.updateIngredient);
 router.delete("/:id", checkAuth, UserIngredientsController.deleteIngredient);
 

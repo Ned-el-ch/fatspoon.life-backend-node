@@ -23,7 +23,9 @@ exports.addRecipe = (request, response, next) => {
 					weight: item.weight
 				}
 			})
-			RecipeIngredient.create(ingData).then(ingredients => {
+      RecipeIngredient
+      .create(ingData)
+      .then(ingredients => {
 				newRecipe.recipeIngredients = ingredients;
 				user.recipes.push(newRecipe)
 				user.save()
